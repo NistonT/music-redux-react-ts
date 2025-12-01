@@ -1,9 +1,9 @@
-import { LogoBar } from "@/shared/ui/logo/LogoBar";
+import { LeftBar } from "@/widgets";
 
 function App() {
   return (
     <>
-      Hello world <LogoBar />
+      <LeftBar />
     </>
   );
 }

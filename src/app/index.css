@@ -1,8 +1,42 @@
 @import "tailwindcss";
 
 :root {
+  /* Main color */
+  --color-main-pink: #ee10b0;
+  --color-main-blue: #0e9eef;
+
+  /* Bg color */
+  --color-bg: #181818;
+
+  /* Button color */
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --text-main: 40px;
+  --text-h1: 32px;
+  --text-h2: 24px;
+  --text-h3: 20px;
+  --text-h4: 16px;
+}
+
+@theme {
+  /* Main color */
+
+  --color-main-pink: var(--color-main-pink);
+  --color-main-blue: var(--color-main-blue);
+
+  /* Bg color */
+
+  --color-bg: var(--color-bg);
+
+  /* Font size */
+
+  --text-main: var(--text-main);
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-h3: var(--text-h3);
+  --text-h4: var(--text-h4);
 }

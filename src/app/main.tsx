@@ -1,8 +1,6 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { MotionProvider } from "./providers/MotionProvider";
-import { ReduxProvider } from "./providers/ReduxProvider";
-import { RouterProvider } from "./providers/RouterProvider";
+import { MotionProvider, ReduxProvider, RouterProvider } from "./providers";
 import { Router } from "./routers";
 
 createRoot(document.getElementById("root")!).render(
