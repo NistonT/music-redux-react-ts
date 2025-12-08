@@ -2,7 +2,7 @@ import { Logo } from "@/shared/ui";
 
 export const LeftBar = () => {
   return (
-    <div>
+    <div className="bg-bg w-1/6">
       <div>
         <Logo />
       </div>
