@@ -1,10 +1,14 @@
 import { createRoot } from "react-dom/client";
-import App from "./App";
 import "./index.css";
-import { ReduxProvider } from "./providers/ReduxProvider";
+import { MotionProvider, ReduxProvider, RouterProvider } from "./providers";
+import { Router } from "./routers";
 
 createRoot(document.getElementById("root")!).render(
   <ReduxProvider>
-    <App />
+    <MotionProvider>
+      <RouterProvider>
+        <Router />
+      </RouterProvider>
+    </MotionProvider>
   </ReduxProvider>,
 );
