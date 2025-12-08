@@ -2,6 +2,9 @@
 
 https://www.figma.com/design/OZjZUbqUid4S5GurLyJtvn/Music-Player-Website---App--Melodies---Community-?node-id=1-4&t=7GBMH3aYMClFaTde-0
 
+<!-- Идеи -->
+<!-- Скрыть/Показать LeftBar (Redux)-->
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
