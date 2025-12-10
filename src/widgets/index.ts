@@ -1,2 +1,3 @@
 import { LeftBar } from "./Bar/LeftBar";
-export { LeftBar };
+import { HeroSection } from "./HeroSection/index";
+export { HeroSection, LeftBar };

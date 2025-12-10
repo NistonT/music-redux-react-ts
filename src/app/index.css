@@ -10,6 +10,12 @@
 
   /* Button color */
 
+  /* Input color */
+
+  --color-bg-input: #1f1f1f;
+
+  background-color: #181818;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -34,6 +40,9 @@
 
   /* Font size */
 
+  /* Input color */
+
+  --color-bg-input: var(--color-bg-input);
   --text-main: var(--text-main);
   --text-h1: var(--text-h1);
   --text-h2: var(--text-h2);
