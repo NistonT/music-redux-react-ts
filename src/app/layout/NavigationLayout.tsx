@@ -7,20 +7,15 @@ export const NavigationLayout = ({ children }: PropsWithChildren) => {
   const { leftBar, handleOpenLeftBar } = useLeftBar();
 
   return (
-    <>
+    <div className={`${leftBar && "flex w-full"}`}>
       {leftBar ? (
-        <div className="flex w-full">
-          <LeftBar />
-          <div className="w-5/6">{children}</div>
-        </div>
+        <LeftBar />
       ) : (
-        <div>
-          <ButtonIconCustom onClick={handleOpenLeftBar} type={"button"} className="absolute left-0 top-0 text-main-pink">
-            <ArrowRight />
-          </ButtonIconCustom>
-          {children}
-        </div>
+        <ButtonIconCustom onClick={handleOpenLeftBar} type={"button"} className="absolute left-0 top-0 text-main-pink">
+          <ArrowRight />
+        </ButtonIconCustom>
       )}
-    </>
+      <div className={`${leftBar && "w-5/6"}`}>{children}</div>
+    </div>
   );
 };
