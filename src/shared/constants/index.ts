@@ -1,2 +1,3 @@
+import { mainSwiperImage } from "./mainSwiperImage";
 import { navigatorRouter } from "./navigatorRouter";
-export { navigatorRouter };
+export { mainSwiperImage, navigatorRouter };
