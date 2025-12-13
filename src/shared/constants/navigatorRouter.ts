@@ -1,14 +1,6 @@
 import { House } from "lucide-react";
-import { ComponentType } from "react";
 
-interface INavigatorRouter {
-  id: number;
-  text: string;
-  href: string;
-  icon: ComponentType;
-}
-
-export const navigatorRouter: INavigatorRouter[] = [
+export const navigatorRouter = [
   {
     id: 0,
     text: "Home",
@@ -16,3 +8,5 @@ export const navigatorRouter: INavigatorRouter[] = [
     icon: House,
   },
 ];
+
+export type TNavigatorRouter = (typeof navigatorRouter)[number];
