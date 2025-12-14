@@ -12,7 +12,6 @@ export const useLeftBar = () => {
   };
 
   const handleCloseLeftBar = () => {
-    console.log("close left bar");
     dispatch(changeBarToggle({ value: false }));
   };
 

@@ -1,5 +1,4 @@
 import { IBaseModel } from "../base/base";
-import { ITrack } from "./track";
 
 export interface IArtist extends IBaseModel {
   name: string;
@@ -9,6 +8,4 @@ export interface IArtist extends IBaseModel {
   listeningWeek: number;
   listeningMonth: number;
   listeningYear: number;
-
-  tracks: ITrack[];
 }
