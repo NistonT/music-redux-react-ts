@@ -13,4 +13,5 @@ export interface ITrack extends IBaseModel {
   artist: IArtist;
   duration: number;
   preview: string;
+  isLike: boolean;
 }
