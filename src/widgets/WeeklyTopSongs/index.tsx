@@ -1,13 +1,25 @@
+import type { RootState } from "@/app/store/store";
+import { play } from "@/entities/player/store/playerSlice";
 import { useTrack } from "@/entities/track/hook/useTrack";
+import type { ITrack } from "@/shared/types";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { Heart } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 
 dayjs.extend(utc);
 
 export const WeeklyTopSongs = () => {
   // Состояние плейлистов
   // Состояние плеера
+
+  const currentTrackId = useSelector((state: RootState) => state.player.currentTrack?.id);
+
+  const dispatch = useDispatch();
+
+  const playTrack = (track: ITrack) => {
+    dispatch(play(track));
+  };
 
   const { tracks } = useTrack();
 
@@ -19,10 +31,16 @@ export const WeeklyTopSongs = () => {
 
       <div>
         {tracks.map((track) => (
-          <div key={track.id} className="flex justify-between items-center mt-5">
+          <div
+            key={track.id}
+            className={`flex justify-between items-center mt-5 group ${track.id === currentTrackId ? "bg-action" : "bg-bg"}`}
+            onClick={() => playTrack(track)}
+          >
             <div className="flex items-center gap-2">
               <div className="w-16 h-16 overflow-hidden">
                 <img className="object-cover w-full h-full rounded-xl" src={track.preview} alt={track.preview} />
+
+                <div></div>
               </div>
               <div>
                 <div className="text-white">{track.name}</div>

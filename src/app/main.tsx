@@ -1,3 +1,4 @@
+import { PlayerMusic } from "@/widgets/PlayerMusic";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { NavigationLayout } from "./layout";
@@ -9,7 +10,9 @@ createRoot(document.getElementById("root")!).render(
     <MotionProvider>
       <RouterProvider>
         <NavigationLayout>
-          <Router />
+          <PlayerMusic>
+            <Router />
+          </PlayerMusic>
         </NavigationLayout>
       </RouterProvider>
     </MotionProvider>

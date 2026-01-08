@@ -1,5 +1,5 @@
 import data from "@/shared/data/track.json";
-import { ITrack } from "@/shared/types";
+import type { ITrack } from "@/shared/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ITrackSlice {

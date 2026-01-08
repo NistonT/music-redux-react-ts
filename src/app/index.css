@@ -7,6 +7,7 @@
 
   /* Bg color */
   --color-bg: #181818;
+  --color-action: #363636;
 
   /* Button color */
 
@@ -37,11 +38,8 @@
   /* Bg color */
 
   --color-bg: var(--color-bg);
-
-  /* Font size */
-
-  /* Input color */
-
+  --color-action: var(--color-action);
+  /* Font size */ /* Input color */
   --color-bg-input: var(--color-bg-input);
   --text-main: var(--text-main);
   --text-h1: var(--text-h1);
