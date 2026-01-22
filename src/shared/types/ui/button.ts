@@ -1,1 +1,0 @@
-export type TButtonType = "button";

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  /* Main color */
+
+  /* Bg color */
+
+  /* Button color */
+
+  /* Input color */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@theme {
+}
