@@ -2,13 +2,11 @@
 
 :root {
   /* Main color */
-
   /* Bg color */
-
+  --color-bg: #121212;
+  --color-bg-active: #212121;
   /* Button color */
-
   /* Input color */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -16,4 +14,6 @@
 }
 
 @theme {
+  --color-bg: var(--color-bg);
+  --color-bg-active: var(--color-bg-active);
 }
