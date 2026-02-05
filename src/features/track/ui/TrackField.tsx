@@ -14,7 +14,10 @@ export const TrackField = ({ track }: Props) => {
   const duration = useAudioDuration(`songs/${track.file}`);
 
   return (
-    <div>
+    <div className="flex">
+      <div className="w-10 h-10">
+        <img className="w-full h-full object-contain" src={`images/songs/${track.img}`} alt={track.img} />
+      </div>
       <div>{track.name}</div>
       <div>{authors.find((author) => author.id === track.author)?.name || "Unknown"}</div>
       <div>{dayjs.unix(duration!).utc().format("m:ss")}</div>
