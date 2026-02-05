@@ -1,3 +1,9 @@
+import { MainSwiper } from "@/widgets";
+
 export const MainPage = () => {
-  return <div>Main Page</div>;
+  return (
+    <div>
+      <MainSwiper />
+    </div>
+  );
 };

@@ -1,2 +1,3 @@
 import { LeftBar } from "@/widgets/LeftBar";
-export { LeftBar };
+import { MainSwiper } from "./MainSwiper/index";
+export { LeftBar, MainSwiper };
