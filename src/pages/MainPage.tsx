@@ -1,11 +1,10 @@
-import { MainSwiper } from "@/widgets";
-import { Track } from "@/widgets/Track";
+import { MainSwiper, MusicList } from "@/widgets";
 
 export const MainPage = () => {
   return (
     <div>
       <MainSwiper />
-      <Track />
+      <MusicList />
     </div>
   );
 };
