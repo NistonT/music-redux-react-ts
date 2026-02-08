@@ -14,12 +14,16 @@ export const TrackField = ({ track }: Props) => {
   const duration = useAudioDuration(`songs/${track.file}`);
 
   return (
-    <div className="flex">
-      <div className="w-10 h-10">
-        <img className="w-full h-full object-contain" src={`images/songs/${track.img}`} alt={track.img} />
+    <div className="flex justify-between items-center px-4 p-1">
+      <div className="flex items-center gap-2">
+        <div className="w-14 h-14">
+          <img className="w-full h-full object-contain rounded-xl" src={`images/songs/${track.img}`} alt={track.img} />
+        </div>
+        <div className="flex flex-col">
+          <div>{track.name}</div>
+          <div>{authors.find((author) => author.id === track.author)?.name || "Unknown"}</div>
+        </div>
       </div>
-      <div>{track.name}</div>
-      <div>{authors.find((author) => author.id === track.author)?.name || "Unknown"}</div>
       <div>{dayjs.unix(duration!).utc().format("m:ss")}</div>
     </div>
   );
