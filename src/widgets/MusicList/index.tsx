@@ -3,7 +3,7 @@ import { tracks } from "@/shared/constants/tracks";
 
 export const MusicList = () => {
   return (
-    <div>
+    <div className="mt-5">
       {tracks.map((track) => (
         <TrackField key={track.id} track={track} />
       ))}

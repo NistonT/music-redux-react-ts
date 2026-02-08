@@ -14,12 +14,12 @@ export const TrackField = ({ track }: Props) => {
   const duration = useAudioDuration(`songs/${track.file}`);
 
   return (
-    <div className="flex justify-between items-center px-4 p-1">
+    <div className="flex justify-between items-center px-4 p-2 cursor-pointer hover:bg-bg-active rounded-xl">
       <div className="flex items-center gap-2">
         <div className="w-14 h-14">
-          <img className="w-full h-full object-contain rounded-xl" src={`images/songs/${track.img}`} alt={track.img} />
+          <img className="w-full h-full object-contain rounded-xl select-none" src={`images/songs/${track.img}`} alt={track.img} />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col font-mono">
           <div>{track.name}</div>
           <div>{authors.find((author) => author.id === track.author)?.name || "Unknown"}</div>
         </div>
