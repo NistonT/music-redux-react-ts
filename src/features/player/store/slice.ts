@@ -17,14 +17,14 @@ const initialState: IPlayerSlice = {
   progress: 0,
 };
 
-export const PlayerSlice = createSlice({
-  name: "PlayerSlice",
+export const playerSlice = createSlice({
+  name: "playerSlice",
   initialState,
   reducers: {
     play(state, action: PayloadAction<{ track: ITrack }>) {
+      console.log("REDUCER PLAY CALLED", action);
       state.currentTrack = action.payload.track;
       state.isPlaying = true;
-      console.log("Playing", state.currentTrack);
     },
 
     seek(state, action: PayloadAction<{ time: number; duration?: number }>) {
@@ -33,3 +33,6 @@ export const PlayerSlice = createSlice({
     },
   },
 });
+
+export const { play, seek } = playerSlice.actions;
+export default playerSlice.reducer;
