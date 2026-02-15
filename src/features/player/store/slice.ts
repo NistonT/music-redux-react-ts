@@ -17,19 +17,36 @@ const initialState: IPlayerSlice = {
   progress: 0,
 };
 
-export const PlayerSlice = createSlice({
-  name: "PlayerSlice",
+export const playerSlice = createSlice({
+  name: "playerSlice",
   initialState,
   reducers: {
-    play(state, action: PayloadAction<{ track: ITrack }>) {
+    setTrack(state, action: PayloadAction<{ track: ITrack }>) {
       state.currentTrack = action.payload.track;
+    },
+
+    play(state) {
       state.isPlaying = true;
-      console.log("Playing", state.currentTrack);
+    },
+
+    stop(state) {
+      state.isPlaying = false;
+    },
+
+    togglePlayPause(state) {
+      state.isPlaying = !state.isPlaying;
     },
 
     seek(state, action: PayloadAction<{ time: number; duration?: number }>) {
       state.currentTime = action.payload.time;
       state.progress = (action.payload.time / (action.payload.duration || 1)) * 100;
     },
+
+    setVolume(state, action: PayloadAction<number>) {
+      state.volume = action.payload;
+    },
   },
 });
+
+export const { setTrack, play, stop, seek, togglePlayPause, setVolume } = playerSlice.actions;
+export default playerSlice.reducer;
