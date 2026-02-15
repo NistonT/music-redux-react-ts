@@ -1,9 +1,21 @@
 import type { RootState } from "@/app/store/store";
+import { seek, stop } from "@/features/player/store/slice";
+import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
+import { TrackDuration } from "@/shared/ui";
 import { PropsWithChildren } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
+  const { audioRef, onSeek, duration } = useAudioTrack();
+
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
+  const currentTime = useSelector((state: RootState) => state.player.currentTime);
+
+  const dispatch = useDispatch();
+
+  const seedChange = (time: number, duration?: number) => {
+    dispatch(seek({ time, duration }));
+  };
 
   return (
     <div>
@@ -11,13 +23,23 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
       {currentTrack && (
         <div className="fixed bottom-0 left-0">
           <div className="text-white">
-            <input type="range" />
+            <input value={currentTime} type="range" min={0} max={duration!} onChange={(e) => onSeek(+e.target.value)} />
+            <TrackDuration duration={duration!} />
             Music
             <div>
               {currentTrack.name} {currentTrack.author}
             </div>
             <div>
-              <audio controls src={`songs/${currentTrack.file}`}></audio>
+              <audio
+                ref={audioRef}
+                src={`songs/${currentTrack.file}`}
+                onTimeUpdate={(e) => {
+                  const currentTrack = Math.floor(e.currentTarget.currentTime);
+                  seedChange(currentTrack, duration!);
+                }}
+                autoPlay
+                onEnded={() => dispatch(stop())}
+              />
             </div>
           </div>
         </div>

@@ -21,10 +21,20 @@ export const playerSlice = createSlice({
   name: "playerSlice",
   initialState,
   reducers: {
-    play(state, action: PayloadAction<{ track: ITrack }>) {
-      console.log("REDUCER PLAY CALLED", action);
+    setTrack(state, action: PayloadAction<{ track: ITrack }>) {
       state.currentTrack = action.payload.track;
+    },
+
+    play(state) {
       state.isPlaying = true;
+    },
+
+    stop(state) {
+      state.isPlaying = false;
+    },
+
+    togglePlayPause(state) {
+      state.isPlaying = !state.isPlaying;
     },
 
     seek(state, action: PayloadAction<{ time: number; duration?: number }>) {
@@ -34,5 +44,5 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { play, seek } = playerSlice.actions;
+export const { setTrack, play, stop, seek, togglePlayPause } = playerSlice.actions;
 export default playerSlice.reducer;

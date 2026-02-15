@@ -1,5 +1,6 @@
 import { authors } from "@/shared/constants/author";
 import type { ITrack } from "@/shared/model/types";
+import { TrackDuration } from "@/shared/ui";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { useAudioDuration } from "../lib/hooks/useAudioDuration";
@@ -25,7 +26,7 @@ export const TrackField = ({ track, onClick }: Props) => {
           <div>{authors.find((author) => author.id === track.author)?.name || "Unknown"}</div>
         </div>
       </div>
-      <div>{dayjs.unix(duration!).utc().format("m:ss")}</div>
+      <TrackDuration duration={duration!} />
     </div>
   );
 };
