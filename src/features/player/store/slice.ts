@@ -41,8 +41,12 @@ export const playerSlice = createSlice({
       state.currentTime = action.payload.time;
       state.progress = (action.payload.time / (action.payload.duration || 1)) * 100;
     },
+
+    setVolume(state, action: PayloadAction<number>) {
+      state.volume = action.payload;
+    },
   },
 });
 
-export const { setTrack, play, stop, seek, togglePlayPause } = playerSlice.actions;
+export const { setTrack, play, stop, seek, togglePlayPause, setVolume } = playerSlice.actions;
 export default playerSlice.reducer;

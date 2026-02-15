@@ -6,10 +6,11 @@ import { PropsWithChildren } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
-  const { audioRef, onSeek, duration } = useAudioTrack();
+  const { audioRef, onSeek, duration, onVolume } = useAudioTrack();
 
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
   const currentTime = useSelector((state: RootState) => state.player.currentTime);
+  const volume = useSelector((state: RootState) => state.player.volume);
 
   const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
                 onEnded={() => dispatch(stop())}
               />
             </div>
+            <input type="range" min={0} max={100} value={volume} onChange={(e) => onVolume(+e.target.value)} />
           </div>
         </div>
       )}
