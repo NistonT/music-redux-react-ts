@@ -1,10 +1,12 @@
 import type { RootState } from "@/app/store/store";
-import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
 import { Volume1, Volume2, VolumeX } from "lucide-react";
 import { useSelector } from "react-redux";
 
-export const VolumeControl = () => {
-  const { onVolume } = useAudioTrack();
+type Props = {
+  onVolume: (value: number) => void;
+};
+
+export const VolumeControl = ({ onVolume }: Props) => {
   const volume = useSelector((state: RootState) => state.player.volume);
 
   const volumeChange = () => {

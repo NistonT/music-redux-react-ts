@@ -1,11 +1,15 @@
 import type { RootState } from "@/app/store/store";
-import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
 import { TrackDuration } from "@/shared/ui";
 import { Pause, Play } from "lucide-react";
 import { useSelector } from "react-redux";
 
-export const ControlCenter = () => {
-  const { onSeek, duration, toggle } = useAudioTrack();
+type Props = {
+  duration: number;
+  onSeek: (value: number) => void;
+  toggle: () => void;
+};
+
+export const ControlCenter = ({ duration, onSeek, toggle }: Props) => {
   const currentTime = useSelector((state: RootState) => state.player.currentTime);
   const isPlaying = useSelector((state: RootState) => state.player.isPlaying);
   const progress = useSelector((state: RootState) => state.player.progress);

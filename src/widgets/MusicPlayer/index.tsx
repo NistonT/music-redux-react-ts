@@ -7,7 +7,7 @@ import { ControlCenter, ImageNameAuthor } from "./ui";
 import { VolumeControl } from "./ui/VolumeControl";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
-  const { audioRef, duration } = useAudioTrack();
+  const { audioRef, duration, onSeek, toggle, onVolume } = useAudioTrack();
 
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
 
@@ -27,10 +27,10 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
             <ImageNameAuthor />
 
             {/* Центр управление трека: запуск/стоп и промотка */}
-            <ControlCenter />
+            <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} />
 
             {/* Управление громкости */}
-            <VolumeControl />
+            <VolumeControl onVolume={onVolume} />
 
             <audio
               ref={audioRef}
