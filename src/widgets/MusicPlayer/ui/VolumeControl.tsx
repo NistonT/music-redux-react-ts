@@ -18,7 +18,7 @@ export const VolumeControl = ({ onVolume }: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-2.5 relative right-5">
+    <div className="flex items-center gap-2.5">
       <div onClick={volumeChange} className="cursor-pointer">
         {volume === 0 ? <VolumeX /> : volume <= 50 ? <Volume1 /> : <Volume2 />}
       </div>
