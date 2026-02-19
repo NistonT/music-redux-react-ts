@@ -11,6 +11,7 @@ https://www.figma.com/design/OZjZUbqUid4S5GurLyJtvn/Music-Player-Website---App--
 7. Добавить сохранение треков в плейлисте через localStorage
 8. Добавить сохрание понравишееся музыки через localStorage
 9. Ленивая загруска для страницы плейлистов
+10. Слушать треки в перемешку
 
 <!-- Идеи -->
 <!-- Скрыть/Показать LeftBar (Redux)-->
