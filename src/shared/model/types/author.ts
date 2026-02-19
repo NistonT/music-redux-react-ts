@@ -1,4 +1,4 @@
-import { ITrack } from "./track";
+import type { ITrack } from "./track";
 
 export interface IAuthor {
   id: number;
