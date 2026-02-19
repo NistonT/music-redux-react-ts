@@ -8,7 +8,7 @@ import { ControlCenter, ImageNameAuthor } from "./ui";
 import { VolumeControl } from "./ui/VolumeControl";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
-  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack, onClose } = useAudioTrack();
+  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack, onClose, onRepeat, toggleRepeat } = useAudioTrack();
 
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
 
@@ -28,7 +28,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
             <ImageNameAuthor />
 
             {/* Центр управление трека: запуск/стоп и промотка */}
-            <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} onChangeTrack={onChangeTrack} />
+            <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} onChangeTrack={onChangeTrack} toggleRepeat={toggleRepeat} />
 
             {/* Управление громкости */}
             <div className="flex relative right-5 gap-5 items-center">
@@ -44,7 +44,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
                 seedChange(currentTrack, duration!);
               }}
               autoPlay
-              onEnded={() => onChangeTrack("next")}
+              onEnded={onRepeat}
             />
           </div>
         </div>

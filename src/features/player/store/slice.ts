@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IPlayerSlice {
   isPlaying: boolean;
+  isRepeat: boolean;
   currentTrack: ITrack | null;
   volume: number;
   currentTime: number;
@@ -12,6 +13,7 @@ interface IPlayerSlice {
 
 const initialState: IPlayerSlice = {
   isPlaying: false,
+  isRepeat: false,
   currentTrack: null,
   volume: 50,
   currentTime: 0,
@@ -45,6 +47,10 @@ export const playerSlice = createSlice({
       state.isPlaying = !state.isPlaying;
     },
 
+    toggleRepeatTrack(state) {
+      state.isRepeat = !state.isRepeat;
+    },
+
     seek(state, action: PayloadAction<{ time: number; duration?: number }>) {
       state.currentTime = action.payload.time;
       state.progress = (action.payload.time / (action.payload.duration || 1)) * 100;
@@ -71,5 +77,5 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack, close } = playerSlice.actions;
+export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack, close, toggleRepeatTrack } = playerSlice.actions;
 export default playerSlice.reducer;
