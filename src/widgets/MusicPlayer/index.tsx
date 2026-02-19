@@ -1,5 +1,5 @@
 import type { RootState } from "@/app/store/store";
-import { seek, stop } from "@/features/player/store/slice";
+import { seek } from "@/features/player/store/slice";
 import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
 import { PropsWithChildren } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import { ControlCenter, ImageNameAuthor } from "./ui";
 import { VolumeControl } from "./ui/VolumeControl";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
-  const { audioRef, duration, onSeek, toggle, onVolume } = useAudioTrack();
+  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack } = useAudioTrack();
 
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
 
@@ -27,7 +27,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
             <ImageNameAuthor />
 
             {/* Центр управление трека: запуск/стоп и промотка */}
-            <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} />
+            <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} onChangeTrack={onChangeTrack} />
 
             {/* Управление громкости */}
             <VolumeControl onVolume={onVolume} />
@@ -40,7 +40,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
                 seedChange(currentTrack, duration!);
               }}
               autoPlay
-              onEnded={() => dispatch(stop())}
+              onEnded={() => onChangeTrack("next")}
             />
           </div>
         </div>

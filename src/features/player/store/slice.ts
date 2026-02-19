@@ -1,4 +1,5 @@
-import type { ITrack } from "@/shared/model/types";
+import { tracks } from "@/shared/constants/tracks";
+import type { ITrack, TypeNextPrev } from "@/shared/model/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IPlayerSlice {
@@ -45,8 +46,23 @@ export const playerSlice = createSlice({
     setVolume(state, action: PayloadAction<number>) {
       state.volume = action.payload;
     },
+
+    changeTrack(state, action: PayloadAction<{ type: TypeNextPrev }>) {
+      if (!state.currentTrack) return;
+
+      const currentIndex = tracks.findIndex((t) => t.id === state.currentTrack?.id);
+
+      if (currentIndex === -1) return;
+
+      const nextIndex = action.payload.type === "next" ? (currentIndex + 1) % tracks.length : (currentIndex - 1 + tracks.length) % tracks.length;
+
+      state.currentTrack = tracks[nextIndex];
+      state.isPlaying = true;
+      state.progress = 0;
+      state.currentTime = 0;
+    },
   },
 });
 
-export const { setTrack, play, stop, seek, togglePlayPause, setVolume } = playerSlice.actions;
+export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack } = playerSlice.actions;
 export default playerSlice.reducer;

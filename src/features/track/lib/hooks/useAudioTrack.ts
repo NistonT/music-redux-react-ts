@@ -1,5 +1,6 @@
 import type { RootState } from "@/app/store/store";
-import { seek, setVolume, togglePlayPause } from "@/features/player/store/slice";
+import { changeTrack, seek, setVolume, togglePlayPause } from "@/features/player/store/slice";
+import { TypeNextPrev } from "@/shared/model/types";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAudioDuration } from "./useAudioDuration";
@@ -30,6 +31,14 @@ export const useAudioTrack = () => {
     dispatch(seek({ time, duration }));
   };
 
+  const onChangeTrack = (type: TypeNextPrev) => {
+    dispatch(changeTrack({ type }));
+
+    if (audioRef.current && store.isPlaying) {
+      audioRef.current.play();
+    }
+  };
+
   const onVolume = (volume: number): void => {
     if (!audioRef.current) return;
     audioRef.current.volume = volume / 100;
@@ -37,5 +46,5 @@ export const useAudioTrack = () => {
     dispatch(setVolume(volume));
   };
 
-  return { audioRef, onSeek, duration, toggle, onVolume };
+  return { audioRef, onSeek, duration, toggle, onVolume, onChangeTrack };
 };
