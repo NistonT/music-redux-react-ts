@@ -34,6 +34,13 @@ export const playerSlice = createSlice({
       state.isPlaying = false;
     },
 
+    close(state) {
+      state.isPlaying = false;
+      state.currentTrack = null;
+      state.currentTime = 0;
+      state.progress = 0;
+    },
+
     togglePlayPause(state) {
       state.isPlaying = !state.isPlaying;
     },
@@ -64,5 +71,5 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack } = playerSlice.actions;
+export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack, close } = playerSlice.actions;
 export default playerSlice.reducer;

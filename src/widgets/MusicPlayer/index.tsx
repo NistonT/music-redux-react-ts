@@ -1,13 +1,14 @@
 import type { RootState } from "@/app/store/store";
 import { seek } from "@/features/player/store/slice";
 import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
+import { X } from "lucide-react";
 import { PropsWithChildren } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ControlCenter, ImageNameAuthor } from "./ui";
 import { VolumeControl } from "./ui/VolumeControl";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
-  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack } = useAudioTrack();
+  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack, onClose } = useAudioTrack();
 
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
 
@@ -30,7 +31,10 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
             <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} onChangeTrack={onChangeTrack} />
 
             {/* Управление громкости */}
-            <VolumeControl onVolume={onVolume} />
+            <div className="flex relative right-5 gap-5 items-center">
+              <VolumeControl onVolume={onVolume} />
+              <X onClick={onClose} />
+            </div>
 
             <audio
               ref={audioRef}
