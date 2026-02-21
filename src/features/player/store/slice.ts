@@ -58,6 +58,8 @@ export const playerSlice = createSlice({
 
     setVolume(state, action: PayloadAction<number>) {
       state.volume = action.payload;
+
+      localStorage.setItem("volume-player", action.payload.toString());
     },
 
     changeTrack(state, action: PayloadAction<{ type: TypeNextPrev }>) {

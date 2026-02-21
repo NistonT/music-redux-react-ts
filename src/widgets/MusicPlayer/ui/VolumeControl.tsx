@@ -1,5 +1,6 @@
 import type { RootState } from "@/app/store/store";
 import { Volume1, Volume2, VolumeX } from "lucide-react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 type Props = {
@@ -11,11 +12,17 @@ export const VolumeControl = ({ onVolume }: Props) => {
 
   const volumeChange = () => {
     if (volume === 0) {
-      onVolume(100);
+      onVolume(50);
     } else {
       onVolume(0);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("volume-player")) {
+      onVolume(Number(localStorage.getItem("volume-player")));
+    }
+  }, [onVolume]);
 
   return (
     <div className="flex items-center gap-2.5">
