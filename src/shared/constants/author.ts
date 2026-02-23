@@ -104,6 +104,125 @@ export const authors: IAuthor[] = [
         author: 6,
         file: "Монеточка - Селфхарм.mp3",
       },
+      {
+        id: 16,
+        img: "selfharm.png",
+        name: "Это было в России",
+        author: 6,
+        file: "Монеточка - Это было в России.mp3",
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: "×øneheart x reidenshi",
+    img: "×øneheart x reidenshi - snowfall.jpg",
+    tracks: [
+      {
+        id: 8,
+        img: "×øneheart x reidenshi - snowfall.jpg",
+        name: "snowfall",
+        author: 7,
+        file: "×øneheart x reidenshi - snowfall.mp3",
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Beach House",
+    img: "Beach House - Space Song.jpg",
+    tracks: [
+      {
+        id: 9,
+        img: "Beach House - Space Song.jpg",
+        name: "Space Song",
+        author: 8,
+        file: "Beach House - Space Song.mp3",
+      },
+    ],
+  },
+  {
+    id: 9,
+    name: "bôa",
+    img: "bôa - Duvet.png",
+    tracks: [
+      {
+        id: 10,
+        img: "bôa - Duvet.png",
+        name: "Duvet",
+        author: 9,
+        file: "bôa - Duvet.mp3",
+      },
+    ],
+  },
+  {
+    id: 10,
+    name: "Edward Maya ft. Vika Jigulina",
+    img: "Edward Maya ft. Vika Jigulina - Stereo love.jpg",
+    tracks: [
+      {
+        id: 11,
+        img: "Edward Maya ft. Vika Jigulina - Stereo love.jpg",
+        name: "Stereo love",
+        author: 10,
+        file: "Edward Maya ft. Vika Jigulina - Stereo love.mp3",
+      },
+    ],
+  },
+  {
+    id: 11,
+    name: "Souiu natsu (そういう夏)",
+    img: "Kaguya-sama wa Kokurasetai OST vol. 2 - 21. Souiu natsu (そういう夏).jpg",
+    tracks: [
+      {
+        id: 12,
+        img: "Kaguya-sama wa Kokurasetai OST vol. 2 - 21. Souiu natsu (そういう夏).jpg",
+        name: "Kaguya-sama wa Kokurasetai OST vol. 2 - 21.",
+        author: 11,
+        file: "Kaguya-sama wa Kokurasetai OST vol. 2 - 21. Souiu natsu (そういう夏).mp3",
+      },
+    ],
+  },
+  {
+    id: 12,
+    name: "mzlff, BOOKER",
+    img: "mzlff, BOOKER - ящики.jpg",
+    tracks: [
+      {
+        id: 13,
+        img: "mzlff, BOOKER - ящики.jpg",
+        name: "ящики",
+        author: 12,
+        file: "mzlff, BOOKER - ящики.mp3",
+      },
+    ],
+  },
+  {
+    id: 13,
+    name: "Nirvana",
+    img: "Nirvana - Heart-Shaped Box.jpg",
+    tracks: [
+      {
+        id: 14,
+        img: "Nirvana - Heart-Shaped Box.jpg",
+        name: "Heart-Shaped Box",
+        author: 13,
+        file: "Nirvana - Heart-Shaped Box.mp3",
+      },
+    ],
+  },
+  {
+    id: 14,
+    name: "Sidewalks and Skeletons",
+    img: "Sidewalks and Skeletons - Goth (Slowed + Reverb).jpgNirvana - Heart-Shaped Box.jpg",
+    tracks: [
+      {
+        id: 15,
+        img: "Sidewalks and Skeletons - Goth (Slowed + Reverb).jpg",
+        name: "Goth (Slowed + Reverb)",
+        author: 14,
+        file: "Sidewalks and Skeletons - Goth (Slowed + Reverb).mp3",
+      },
     ],
   },
 ];

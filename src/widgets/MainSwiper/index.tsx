@@ -17,9 +17,6 @@ export const MainSwiper = () => {
       >
         <SwiperSlide>
           <SlideContent
-            image={"backtofriends.png"}
-            name={"Back to friends"}
-            author={"Sombr"}
             track={{
               id: 0,
               img: "backtofriends.png",
@@ -31,9 +28,6 @@ export const MainSwiper = () => {
         </SwiperSlide>
         <SwiperSlide>
           <SlideContent
-            image={"cureforme.jpg"}
-            name={"Cure For Me"}
-            author={"AURORA"}
             track={{
               id: 1,
               img: "cureforme.jpg",
@@ -45,10 +39,6 @@ export const MainSwiper = () => {
         </SwiperSlide>
         <SwiperSlide>
           <SlideContent
-            image={"endofbeginning.png"}
-            name={"End of Beginning"}
-            author={"Djo"}
-            song={"Djo - End of Beginning.mp3"}
             track={{
               id: 3,
               img: "endofbeginning.png",
