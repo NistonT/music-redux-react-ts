@@ -214,7 +214,7 @@ export const authors: IAuthor[] = [
   {
     id: 14,
     name: "Sidewalks and Skeletons",
-    img: "Sidewalks and Skeletons - Goth (Slowed + Reverb).jpgNirvana - Heart-Shaped Box.jpg",
+    img: "Sidewalks and Skeletons - Goth (Slowed + Reverb).jpg",
     tracks: [
       {
         id: 15,

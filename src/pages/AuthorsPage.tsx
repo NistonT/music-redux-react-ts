@@ -1,3 +1,9 @@
+import { AuthorsList } from "@/widgets";
+
 export const AuthorsPage = () => {
-  return <>AuthorsPage</>;
+  return (
+    <>
+      <AuthorsList />
+    </>
+  );
 };

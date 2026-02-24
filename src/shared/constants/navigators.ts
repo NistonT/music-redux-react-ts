@@ -1,4 +1,4 @@
-import { House, Library, LucideIcon, Search } from "lucide-react";
+import { House, Library, LucideIcon, Search, Users } from "lucide-react";
 import { pageRouter } from "./page-router";
 
 interface INavigator {
@@ -12,4 +12,5 @@ export const navigators: INavigator[] = [
   { id: 0, name: "Home", href: pageRouter.Home, icon: House },
   { id: 1, name: "Search", href: pageRouter.Search, icon: Search },
   { id: 2, name: "Library", href: pageRouter.Library, icon: Library },
+  { id: 3, name: "Authors", href: pageRouter.Authors, icon: Users },
 ];
