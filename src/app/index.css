@@ -17,6 +17,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background: var(--color-bg);
+}
+
 @theme {
   --color-bg: var(--color-bg);
   --color-bg-active: var(--color-bg-active);
