@@ -1,7 +1,14 @@
+import { Author } from "@/widgets";
 import { useParams } from "react-router";
 
 export const AuthorIdPage = () => {
   const { id } = useParams();
 
-  return <div>Author id page {id}</div>;
+  if (!id) return;
+
+  return (
+    <div>
+      <Author id={id} />
+    </div>
+  );
 };

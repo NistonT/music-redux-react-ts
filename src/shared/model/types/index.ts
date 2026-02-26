@@ -1,4 +1,4 @@
-import { IAuthor } from "./author";
-import { TypeNextPrev } from "./base";
-import { ITrack } from "./track";
-export type { IAuthor, ITrack, TypeNextPrev };
+import type { IAuthor } from "./author";
+import type { TypeNextPrev, TypeNotFound } from "./base";
+import type { ITrack } from "./track";
+export type { IAuthor, ITrack, TypeNextPrev, TypeNotFound };
