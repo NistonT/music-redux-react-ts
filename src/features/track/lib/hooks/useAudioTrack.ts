@@ -3,12 +3,15 @@ import { changeTrack, close, seek, setVolume, togglePlayPause, toggleRepeatTrack
 import { TypeNextPrev } from "@/shared/model/types";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
 import { useAudioDuration } from "./useAudioDuration";
 
 export const useAudioTrack = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const store = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch();
+
+  const location = useLocation();
 
   const duration = useAudioDuration(`/songs/${store.currentTrack?.file}`);
 
@@ -38,7 +41,19 @@ export const useAudioTrack = () => {
   };
 
   const onChangeTrack = (type: TypeNextPrev): void => {
-    dispatch(changeTrack({ type }));
+    const locationTrack = location.pathname.split("/").filter(Boolean);
+
+    if (locationTrack[0] === "author" && locationTrack[1]) {
+      const authorId = Number(locationTrack[1]);
+
+      if (!isNaN(authorId)) {
+        dispatch(changeTrack({ type, authorId }));
+      } else {
+        dispatch(changeTrack({ type }));
+      }
+    } else {
+      dispatch(changeTrack({ type }));
+    }
 
     if (audioRef.current && store.isPlaying) {
       audioRef.current.play();
@@ -62,7 +77,7 @@ export const useAudioTrack = () => {
     if (store.isRepeat) {
       audioRef.current.play();
     } else {
-      dispatch(changeTrack({ type: "next" }));
+      onChangeTrack("next");
     }
   };
 

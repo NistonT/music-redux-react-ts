@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const TracksListAuthor = ({ tracks }: Props) => {
-  return <div>{tracks ? tracks.map((track) => <TrackField track={track} />) : <div>Не найдено</div>}</div>;
+  return <div>{tracks ? tracks.map((track) => <TrackField key={track.id} track={track} />) : <div>Не найдено</div>}</div>;
 };
