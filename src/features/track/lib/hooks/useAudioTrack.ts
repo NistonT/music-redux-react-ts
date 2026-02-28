@@ -10,7 +10,7 @@ export const useAudioTrack = () => {
   const store = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch();
 
-  const duration = useAudioDuration(`songs/${store.currentTrack?.file}`);
+  const duration = useAudioDuration(`/songs/${store.currentTrack?.file}`);
 
   const toggle = (): void => {
     if (!audioRef.current) return;
