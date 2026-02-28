@@ -38,7 +38,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
 
             <audio
               ref={audioRef}
-              src={`songs/${currentTrack.file}`}
+              src={`/songs/${currentTrack.file}`}
               onTimeUpdate={(e) => {
                 const currentTrack = Math.floor(e.currentTarget.currentTime);
                 seedChange(currentTrack, duration!);

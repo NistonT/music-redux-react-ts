@@ -12,7 +12,7 @@ export const ImageNameAuthor = () => {
   return (
     <div className="flex items-center gap-5 p-2">
       <div className="w-20 h-20">
-        <img className="w-full h-full object-contain rounded-xl select-none" src={`images/songs/${currentTrack?.img}`} alt={currentTrack?.img} />
+        <img className="w-full h-full object-contain rounded-xl select-none" src={`/images/songs/${currentTrack?.img}`} alt={currentTrack?.img} />
       </div>
       <div className="flex flex-col font-mono">
         <div>{currentTrack?.name}</div>

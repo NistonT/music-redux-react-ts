@@ -1,3 +1,4 @@
+import { authors } from "@/shared/constants/author";
 import { tracks } from "@/shared/constants/tracks";
 import type { ITrack, TypeNextPrev } from "@/shared/model/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -62,19 +63,37 @@ export const playerSlice = createSlice({
       localStorage.setItem("volume-player", action.payload.toString());
     },
 
-    changeTrack(state, action: PayloadAction<{ type: TypeNextPrev }>) {
+    changeTrack(state, action: PayloadAction<{ type: TypeNextPrev; authorId?: string | number }>) {
       if (!state.currentTrack) return;
 
-      const currentIndex = tracks.findIndex((t) => t.id === state.currentTrack?.id);
+      let nextTrack: ITrack | null = null;
 
-      if (currentIndex === -1) return;
+      if (action.payload.authorId) {
+        const author = authors.find((a) => a.id === Number(action.payload.authorId));
+        if (!author) return;
 
-      const nextIndex = action.payload.type === "next" ? (currentIndex + 1) % tracks.length : (currentIndex - 1 + tracks.length) % tracks.length;
+        const trackIndex = author.tracks.findIndex((t) => t.id === state.currentTrack?.id);
+        if (trackIndex === -1) return;
 
-      state.currentTrack = tracks[nextIndex];
-      state.isPlaying = true;
-      state.progress = 0;
-      state.currentTime = 0;
+        const total = author.tracks.length;
+        const nextIndex = action.payload.type === "next" ? (trackIndex + 1) % total : (trackIndex - 1) % total;
+
+        nextTrack = author.tracks[nextIndex];
+      } else {
+        const currentIndex = tracks.findIndex((t) => t.id === state.currentTrack?.id);
+
+        if (currentIndex === -1) return;
+
+        const nextIndex = action.payload.type === "next" ? (currentIndex + 1) % tracks.length : (currentIndex - 1 + tracks.length) % tracks.length;
+        state.currentTrack = tracks[nextIndex];
+      }
+
+      if (nextTrack) {
+        state.currentTrack = nextTrack;
+        state.isPlaying = true;
+        state.currentTime = 0;
+        state.progress = 0;
+      }
     },
   },
 });

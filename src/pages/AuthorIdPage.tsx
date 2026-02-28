@@ -1,10 +1,10 @@
 import { Author } from "@/widgets";
 import { useParams } from "react-router";
 
-export const AuthorIdPage = () => {
-  const { id } = useParams();
+const AuthorIdPage = () => {
+  const { id } = useParams<{ id: string }>();
 
-  if (!id) return;
+  if (!id) return <div>Некорретный id</div>;
 
   return (
     <div>
@@ -12,3 +12,5 @@ export const AuthorIdPage = () => {
     </div>
   );
 };
+
+export default AuthorIdPage;
