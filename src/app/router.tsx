@@ -15,7 +15,7 @@ export const Router = () => {
       <Route
         path={pageRouter.Author}
         element={
-          <Suspense fallback={<div>Загрузка автора</div>}>
+          <Suspense fallback={<div>Загрузка автора...</div>}>
             <AuthorIdPage />
           </Suspense>
         }
