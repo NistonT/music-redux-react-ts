@@ -7,6 +7,7 @@ export const tracks: ITrack[] = [
     name: "Back to of friends",
     author: 0,
     file: "Sombr - Back to friends.mp3",
+    genres: ["pop", "rock", "indie"],
   },
   {
     id: 1,
@@ -14,6 +15,7 @@ export const tracks: ITrack[] = [
     name: "Cure For Me",
     author: 1,
     file: "AURORA - Cure For Me.mp3",
+    genres: ["electronic", "pop"],
   },
   {
     id: 2,
@@ -21,6 +23,7 @@ export const tracks: ITrack[] = [
     name: "Runaway",
     author: 1,
     file: "AURORA - Runaway.mp3",
+    genres: ["pop"],
   },
   {
     id: 3,
@@ -28,6 +31,7 @@ export const tracks: ITrack[] = [
     name: "End of Beginning",
     author: 2,
     file: "Djo - End of Beginning.mp3",
+    genres: ["indie", "pop"],
   },
   {
     id: 4,
@@ -35,6 +39,7 @@ export const tracks: ITrack[] = [
     name: "Formed by Glaciers",
     author: 3,
     file: "Kubbi - Formed by Glaciers.mp3",
+    genres: ["electronic", "ambient"],
   },
   {
     id: 5,
@@ -42,6 +47,7 @@ export const tracks: ITrack[] = [
     name: "Paper Planes",
     author: 4,
     file: "M.I.A. - Paper Planes.mp3",
+    genres: ["hiphop", "pop"],
   },
   {
     id: 6,
@@ -49,6 +55,7 @@ export const tracks: ITrack[] = [
     name: "Scott Street",
     author: 5,
     file: "Phoebe Bridgers - Scott Street.mp3",
+    genres: ["indie"],
   },
   {
     id: 7,
@@ -56,6 +63,7 @@ export const tracks: ITrack[] = [
     name: "Селфхарм",
     author: 6,
     file: "Монеточка - Селфхарм.mp3",
+    genres: ["pop", "electronic", "indie"],
   },
   {
     id: 8,
@@ -63,6 +71,7 @@ export const tracks: ITrack[] = [
     name: "snowfall",
     author: 7,
     file: "×øneheart x reidenshi - snowfall.mp3",
+    genres: ["ambient"],
   },
   {
     id: 9,
@@ -70,6 +79,7 @@ export const tracks: ITrack[] = [
     name: "Space Song",
     author: 8,
     file: "Beach House - Space Song.mp3",
+    genres: ["pop"],
   },
   {
     id: 10,
@@ -77,6 +87,7 @@ export const tracks: ITrack[] = [
     name: "Duvet",
     author: 9,
     file: "bôa - Duvet.mp3",
+    genres: ["rock", "indie", "pop"],
   },
   {
     id: 11,
@@ -84,6 +95,7 @@ export const tracks: ITrack[] = [
     name: "Stereo love",
     author: 10,
     file: "Edward Maya ft. Vika Jigulina - Stereo love.mp3",
+    genres: ["pop"],
   },
   {
     id: 12,
@@ -91,6 +103,7 @@ export const tracks: ITrack[] = [
     name: "Kaguya-sama wa Kokurasetai OST vol. 2 - 21.",
     author: 11,
     file: "Kaguya-sama wa Kokurasetai OST vol. 2 - 21. Souiu natsu (そういう夏).mp3",
+    genres: ["other", "ambient"],
   },
   {
     id: 13,
@@ -98,6 +111,7 @@ export const tracks: ITrack[] = [
     name: "ящики",
     author: 12,
     file: "mzlff, BOOKER - ящики.mp3",
+    genres: ["hiphop"],
   },
   {
     id: 14,
@@ -105,6 +119,7 @@ export const tracks: ITrack[] = [
     name: "Heart-Shaped Box",
     author: 13,
     file: "Nirvana - Heart-Shaped Box.mp3",
+    genres: ["rock", "indie"],
   },
   {
     id: 15,
@@ -112,6 +127,7 @@ export const tracks: ITrack[] = [
     name: "Goth (Slowed + Reverb)",
     author: 14,
     file: "Sidewalks and Skeletons - Goth (Slowed + Reverb).mp3",
+    genres: ["electronic", "ambient"],
   },
   {
     id: 16,
@@ -119,5 +135,6 @@ export const tracks: ITrack[] = [
     name: "Это было в России",
     author: 6,
     file: "Монеточка - Это было в России.mp3",
+    genres: ["indie", "pop"],
   },
 ];
