@@ -17,6 +17,9 @@ https://www.figma.com/design/OZjZUbqUid4S5GurLyJtvn/Music-Player-Website---App--
 13. Делать меньше веток, но больше фич
 
 <!-- Идеи -->
+
+
+
 <!-- Скрыть/Показать LeftBar (Redux)-->
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
