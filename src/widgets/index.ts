@@ -5,4 +5,5 @@ import { MainSwiper } from "./MainSwiper/index";
 import { MusicList } from "./MusicList/index";
 import { MusicPlayer } from "./MusicPlayer/index";
 import { NotFound } from "./NotFound";
-export { Author, AuthorsList, LeftBar, MainSwiper, MusicList, MusicPlayer, NotFound };
+import { SearchWithHistory } from "./SearchWithHistory/index";
+export { Author, AuthorsList, LeftBar, MainSwiper, MusicList, MusicPlayer, NotFound, SearchWithHistory };
