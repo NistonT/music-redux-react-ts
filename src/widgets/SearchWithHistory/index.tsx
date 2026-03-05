@@ -1,6 +1,6 @@
-import { useClickOutside } from "@/shared/lib/hooks/useClickOutside";
+import { useSearchHistory } from "@/shared/lib/hooks/useSearchHistory";
 import { SearchDefault } from "@/shared/ui";
-import { useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
 
 type Props = {
   value: string;
@@ -10,22 +10,7 @@ type Props = {
 };
 
 export const SearchWithHistory = ({ value, setValue, placeholder, className }: Props) => {
-  const [searchHistory, setSearchHistory] = useState<string[]>(["ASD", "POP", "asdq", "dqwd"]);
-  const [isModalSearchHistory, setModalSearchHistory] = useState<boolean>(false);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const addToHistory = (query: string) => {
-    setSearchHistory((prev) => {
-      const exists = prev.includes(query);
-
-      const updated = exists ? prev : [...prev, query];
-
-      return updated.slice(-10);
-    });
-  };
-
-  useClickOutside(containerRef, () => setModalSearchHistory(false));
+  const { searchHistory, setSearchHistory, isModalSearchHistory, setModalSearchHistory, addToHistory, containerRef } = useSearchHistory();
 
   const history = useMemo(
     () =>
@@ -40,7 +25,7 @@ export const SearchWithHistory = ({ value, setValue, placeholder, className }: P
           {h}
         </div>
       )),
-    [searchHistory, setValue],
+    [searchHistory, setValue, setModalSearchHistory],
   );
 
   return (
