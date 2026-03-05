@@ -1,3 +1,4 @@
+import { SEARCH_HISTORY } from "@/shared/constants/localstorage";
 import { useEffect, useRef, useState } from "react";
 import { useClickOutside } from "./useClickOutside";
 
@@ -13,7 +14,7 @@ export const useSearchHistory = () => {
 
       const updated = exists ? prev : [...prev, query];
 
-      localStorage.setItem("search-history", JSON.stringify(updated));
+      localStorage.setItem(SEARCH_HISTORY, JSON.stringify(updated));
 
       return updated.slice(-10);
     });
@@ -22,13 +23,13 @@ export const useSearchHistory = () => {
   useClickOutside(containerRef, () => setModalSearchHistory(false));
 
   useEffect(() => {
-    const stored = localStorage.getItem("search-history");
+    const stored = localStorage.getItem(SEARCH_HISTORY);
 
     if (stored !== null) {
       try {
         setSearchHistory(JSON.parse(stored));
       } catch {
-        localStorage.removeItem("search-history");
+        localStorage.removeItem(SEARCH_HISTORY);
       }
     }
   }, []);

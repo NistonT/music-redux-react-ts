@@ -1,7 +1,8 @@
+import { SEARCH_HISTORY } from "@/shared/constants/localstorage";
 import { useSearchHistory } from "@/shared/lib/hooks/useSearchHistory";
 import { SearchDefault } from "@/shared/ui";
-import { History } from "lucide-react";
 import { useMemo } from "react";
+import { ButtonClearSearchHistory, ItemSearchHistory } from "./ui";
 
 type Props = {
   value: string;
@@ -15,18 +16,15 @@ export const SearchWithHistory = ({ value, setValue, placeholder, className }: P
 
   const history = useMemo(
     () =>
-      searchHistory.map((h) => (
-        <div
-          className="bg-bg flex px-2 items-center border-2 border-transparent hover:border-white py-1"
-          key={h}
-          onClick={() => {
-            setValue(h);
+      searchHistory.map((item) => (
+        <ItemSearchHistory
+          setActive={() => {
+            setValue(item);
             setModalSearchHistory(false);
           }}
         >
-          <History />
-          <div className="text-xl font-mono px-2">{h}</div>
-        </div>
+          {item}
+        </ItemSearchHistory>
       )),
     [searchHistory, setValue, setModalSearchHistory],
   );
@@ -56,12 +54,12 @@ export const SearchWithHistory = ({ value, setValue, placeholder, className }: P
             {history}
           </div>
           {searchHistory.length > 0 && (
-            <button
-              className="text-xl font-mono px-2 bg-bg w-full border-2 border-transparent hover:border-white"
-              onClick={() => setSearchHistory([])}
-            >
-              Clear
-            </button>
+            <ButtonClearSearchHistory
+              clearHistory={() => {
+                setSearchHistory([]);
+                localStorage.removeItem(SEARCH_HISTORY);
+              }}
+            />
           )}
         </div>
       )}
