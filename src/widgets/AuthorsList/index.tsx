@@ -1,7 +1,8 @@
 import { authors } from "@/shared/constants/author";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce";
-import { AuthorPreview, SearchDefault, TextHeader } from "@/shared/ui";
+import { AuthorPreview, TextHeader } from "@/shared/ui";
 import { useMemo, useState } from "react";
+import { SearchWithHistory } from "../SearchWithHistory";
 
 export const AuthorsList = () => {
   const [search, setSearch] = useState<string>("");
@@ -12,10 +13,10 @@ export const AuthorsList = () => {
 
   return (
     <>
-      <div className="flex items-center w-full my-10 px-5">
+      <div className="flex w-full my-10 px-5 relative max-w-2xl">
         <TextHeader>Authors</TextHeader>
-        <SearchDefault className="absolute left-5/12 transform -translate-x-8/12" value={search} setValue={setSearch} />
       </div>
+      <SearchWithHistory className="w-full mb-10" value={search} setValue={setSearch} />
       <div>
         {filtered.length > 0 ? (
           <div className="grid grid-cols-3 gap-4">

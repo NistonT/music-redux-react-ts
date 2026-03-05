@@ -1,8 +1,8 @@
 import { authors } from "@/shared/constants/author";
 
 import { useDebounce } from "@/shared/lib/hooks/useDebounce";
-import { SearchDefault } from "@/shared/ui";
 import { useMemo, useState } from "react";
+import { SearchWithHistory } from "../SearchWithHistory";
 import { HeaderAuthor, TracksListAuthor } from "./ui";
 
 type Props = {
@@ -29,7 +29,7 @@ export const Author = ({ id }: Props) => {
   return (
     <div>
       <HeaderAuthor img={author.img} name={author.name} tracksLength={author.tracks.length} />
-      <SearchDefault value={search} setValue={setSearch} className="mx-auto my-5" />
+      <SearchWithHistory value={search} setValue={setSearch} className="mx-auto my-5" />
       <TracksListAuthor tracks={filtered || null} />
     </div>
   );
