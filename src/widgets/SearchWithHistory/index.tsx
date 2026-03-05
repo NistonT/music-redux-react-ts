@@ -1,5 +1,6 @@
 import { useSearchHistory } from "@/shared/lib/hooks/useSearchHistory";
 import { SearchDefault } from "@/shared/ui";
+import { History } from "lucide-react";
 import { useMemo } from "react";
 
 type Props = {
@@ -16,25 +17,27 @@ export const SearchWithHistory = ({ value, setValue, placeholder, className }: P
     () =>
       searchHistory.map((h) => (
         <div
+          className="bg-bg flex px-2 items-center border-2 border-transparent hover:border-white py-1"
           key={h}
           onClick={() => {
             setValue(h);
             setModalSearchHistory(false);
           }}
         >
-          {h}
+          <History />
+          <div className="text-xl font-mono px-2">{h}</div>
         </div>
       )),
     [searchHistory, setValue, setModalSearchHistory],
   );
 
   return (
-    <div className={`relative ${className}`} ref={containerRef}>
-      <div>
+    <div className={`relative w-full ${className}`} ref={containerRef}>
+      <div className="px-2">
         <SearchDefault
           value={value}
           setValue={setValue}
-          className={`absolute`}
+          className={``}
           placeholder={placeholder}
           setSearchHistory={addToHistory}
           setModalSearchHistory={setModalSearchHistory}
@@ -42,9 +45,24 @@ export const SearchWithHistory = ({ value, setValue, placeholder, className }: P
       </div>
 
       {isModalSearchHistory && searchHistory.length > 0 && (
-        <div className="absolute z-30">
-          <div>{history}</div>
-          {searchHistory.length > 0 && <button onClick={() => setSearchHistory([])}>Clear</button>}
+        <div className="absolute z-30 w-full px-4 pb-4">
+          <div
+            className="w-full max-h-44 overflow-y-scroll"
+            style={{
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            {history}
+          </div>
+          {searchHistory.length > 0 && (
+            <button
+              className="text-xl font-mono px-2 bg-bg w-full border-2 border-transparent hover:border-white"
+              onClick={() => setSearchHistory([])}
+            >
+              Clear
+            </button>
+          )}
         </div>
       )}
     </div>
