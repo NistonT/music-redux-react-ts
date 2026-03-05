@@ -1,6 +1,8 @@
-import { useClickOutside } from "@/shared/lib/hooks/useClickOutside";
+import { SEARCH_HISTORY } from "@/shared/constants/localstorage";
+import { useSearchHistory } from "@/shared/lib/hooks/useSearchHistory";
 import { SearchDefault } from "@/shared/ui";
-import { useMemo, useRef, useState } from "react";
+import { useMemo } from "react";
+import { ButtonClearSearchHistory, ItemSearchHistory } from "./ui";
 
 type Props = {
   value: string;
@@ -10,46 +12,30 @@ type Props = {
 };
 
 export const SearchWithHistory = ({ value, setValue, placeholder, className }: Props) => {
-  const [searchHistory, setSearchHistory] = useState<string[]>(["ASD", "POP", "asdq", "dqwd"]);
-  const [isModalSearchHistory, setModalSearchHistory] = useState<boolean>(false);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const addToHistory = (query: string) => {
-    setSearchHistory((prev) => {
-      const exists = prev.includes(query);
-
-      const updated = exists ? prev : [...prev, query];
-
-      return updated.slice(-10);
-    });
-  };
-
-  useClickOutside(containerRef, () => setModalSearchHistory(false));
+  const { searchHistory, setSearchHistory, isModalSearchHistory, setModalSearchHistory, addToHistory, containerRef } = useSearchHistory();
 
   const history = useMemo(
     () =>
-      searchHistory.map((h) => (
-        <div
-          key={h}
-          onClick={() => {
-            setValue(h);
+      searchHistory.map((item) => (
+        <ItemSearchHistory
+          setActive={() => {
+            setValue(item);
             setModalSearchHistory(false);
           }}
         >
-          {h}
-        </div>
+          {item}
+        </ItemSearchHistory>
       )),
-    [searchHistory, setValue],
+    [searchHistory, setValue, setModalSearchHistory],
   );
 
   return (
-    <div className={`relative ${className}`} ref={containerRef}>
-      <div>
+    <div className={`relative w-full ${className}`} ref={containerRef}>
+      <div className="px-2">
         <SearchDefault
           value={value}
           setValue={setValue}
-          className={`absolute`}
+          className={``}
           placeholder={placeholder}
           setSearchHistory={addToHistory}
           setModalSearchHistory={setModalSearchHistory}
@@ -57,9 +43,24 @@ export const SearchWithHistory = ({ value, setValue, placeholder, className }: P
       </div>
 
       {isModalSearchHistory && searchHistory.length > 0 && (
-        <div className="absolute z-30">
-          <div>{history}</div>
-          {searchHistory.length > 0 && <button onClick={() => setSearchHistory([])}>Clear</button>}
+        <div className="absolute z-30 w-full px-4 pb-4">
+          <div
+            className="w-full max-h-44 overflow-y-scroll"
+            style={{
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            {history}
+          </div>
+          {searchHistory.length > 0 && (
+            <ButtonClearSearchHistory
+              clearHistory={() => {
+                setSearchHistory([]);
+                localStorage.removeItem(SEARCH_HISTORY);
+              }}
+            />
+          )}
         </div>
       )}
     </div>

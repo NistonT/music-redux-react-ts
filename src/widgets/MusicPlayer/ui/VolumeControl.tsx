@@ -1,4 +1,5 @@
 import type { RootState } from "@/app/store/store";
+import { VOLUME_PLAYER } from "@/shared/constants/localstorage";
 import { Volume1, Volume2, VolumeX } from "lucide-react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -19,8 +20,8 @@ export const VolumeControl = ({ onVolume }: Props) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("volume-player")) {
-      onVolume(Number(localStorage.getItem("volume-player")));
+    if (localStorage.getItem(VOLUME_PLAYER)) {
+      onVolume(Number(localStorage.getItem(VOLUME_PLAYER)));
     }
   }, [onVolume]);
 
