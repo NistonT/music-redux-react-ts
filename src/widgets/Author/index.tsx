@@ -1,7 +1,8 @@
+import { setTracksList } from "@/features/player/store/slice";
 import { authors } from "@/shared/constants/author";
-
 import { useDebounce } from "@/shared/lib/hooks/useDebounce";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 import { SearchWithHistory } from "../SearchWithHistory";
 import { HeaderAuthor, TracksListAuthor } from "./ui";
 
@@ -14,17 +15,25 @@ export const Author = ({ id }: Props) => {
   const author = authors.find((a) => a.id === authorId);
 
   const [search, setSearch] = useState<string>("");
-
   const debounce = useDebounce(search);
+  const dispatch = useDispatch();
 
-  const filtered = useMemo(
-    () => author?.tracks.filter((author) => author.name.toLowerCase().includes(debounce.toLocaleLowerCase())),
-    [debounce, author?.tracks],
-  );
+  const filtered = useMemo(() => {
+    if (!author) return [];
+    return author?.tracks.filter((author) => author.name.toLowerCase().includes(debounce.toLocaleLowerCase()));
+  }, [debounce, author]);
 
-  if (!author) {
-    return <div>Автор не найден</div>;
-  }
+  useEffect(() => {
+    if (author) {
+      dispatch(setTracksList(filtered));
+    }
+
+    return () => {
+      dispatch(setTracksList([]));
+    };
+  }, [dispatch, filtered, author]);
+
+  if (!author) return <div>Автор не найден</div>;
 
   return (
     <div>

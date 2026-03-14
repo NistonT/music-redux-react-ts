@@ -1,4 +1,3 @@
-import { authors } from "@/shared/constants/author";
 import { tracks } from "@/shared/constants/tracks";
 import type { ITrack, TypeNextPrev } from "@/shared/model/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -10,6 +9,7 @@ interface IPlayerSlice {
   volume: number;
   currentTime: number;
   progress: number;
+  tracksList: ITrack[];
 }
 
 const initialState: IPlayerSlice = {
@@ -19,6 +19,7 @@ const initialState: IPlayerSlice = {
   volume: 50,
   currentTime: 0,
   progress: 0,
+  tracksList: [],
 };
 
 export const playerSlice = createSlice({
@@ -63,29 +64,36 @@ export const playerSlice = createSlice({
       localStorage.setItem("volume-player", action.payload.toString());
     },
 
-    changeTrack(state, action: PayloadAction<{ type: TypeNextPrev; authorId?: string | number }>) {
+    setTracksList(state, action: PayloadAction<ITrack[]>) {
+      state.tracksList = action.payload;
+    },
+
+    changeTrack(state, action: PayloadAction<{ type: TypeNextPrev }>) {
       if (!state.currentTrack) return;
 
       let nextTrack: ITrack | null = null;
 
-      if (action.payload.authorId) {
-        const author = authors.find((a) => a.id === Number(action.payload.authorId));
-        if (!author) return;
+      if (state.tracksList.length > 0) {
+        const currentIndex = state.tracksList.findIndex((t) => t.id === state.currentTrack!.id);
 
-        const trackIndex = author.tracks.findIndex((t) => t.id === state.currentTrack?.id);
-        if (trackIndex === -1) return;
+        if (currentIndex !== -1) {
+          const total = state.tracksList.length;
 
-        const total = author.tracks.length;
-        const nextIndex = action.payload.type === "next" ? (trackIndex + 1) % total : (trackIndex - 1) % total;
+          const nextIndex = action.payload.type === "next" ? (currentIndex + 1) % total : (currentIndex - 1 + total) % total;
+          nextTrack = state.tracksList[nextIndex];
+        }
+      }
 
-        nextTrack = author.tracks[nextIndex];
-      } else {
-        const currentIndex = tracks.findIndex((t) => t.id === state.currentTrack?.id);
+      if (!nextTrack) {
+        const currentIndex = tracks.findIndex((t) => t.id === state.currentTrack!.id);
 
-        if (currentIndex === -1) return;
+        if (currentIndex !== -1) {
+          const total = tracks.length;
 
-        const nextIndex = action.payload.type === "next" ? (currentIndex + 1) % tracks.length : (currentIndex - 1 + tracks.length) % tracks.length;
-        state.currentTrack = tracks[nextIndex];
+          const nextIndex = action.payload.type === "next" ? (currentIndex + 1) % total : (currentIndex - 1 + total) % total;
+
+          nextTrack = tracks[nextIndex];
+        }
       }
 
       if (nextTrack) {
@@ -98,5 +106,5 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack, close, toggleRepeatTrack } = playerSlice.actions;
+export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack, close, toggleRepeatTrack, setTracksList } = playerSlice.actions;
 export default playerSlice.reducer;
