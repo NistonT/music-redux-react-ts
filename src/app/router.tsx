@@ -1,4 +1,4 @@
-import { AuthorsPage, LibraryPage, MainPage, SearchPage } from "@/pages";
+import { AuthorsPage, FavoritesPage, LibraryPage, MainPage, SearchPage } from "@/pages";
 import { pageRouter } from "@/shared/constants/page-router";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
@@ -12,6 +12,16 @@ export const Router = () => {
       <Route path={pageRouter.Search} element={<SearchPage />} />
       <Route path={pageRouter.Library} element={<LibraryPage />} />
       <Route path={pageRouter.Authors} element={<AuthorsPage />} />
+
+      <Route
+        path={pageRouter.Favorites}
+        element={
+          <Suspense fallback={<div>Загрузка треков...</div>}>
+            <FavoritesPage />
+          </Suspense>
+        }
+      />
+
       <Route
         path={pageRouter.Author}
         element={
