@@ -2,6 +2,7 @@ class PagesRouter {
   Home = "/";
   Search = "/search";
   Library = "/library";
+  Favorites = "/favorites";
 
   Authors = "/author";
   Author = "/author/:id";

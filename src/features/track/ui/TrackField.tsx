@@ -1,11 +1,14 @@
 import type { RootState } from "@/app/store/store";
+import { selectIsFavorite } from "@/features/favorite/store/selectors";
+import { addTrack, deleteTrack } from "@/features/favorite/store/slice";
 import { play, setTrack } from "@/features/player/store/slice";
 import { authors } from "@/shared/constants/author";
 import type { ITrack } from "@/shared/model/types";
 import { TrackDuration } from "@/shared/ui";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { Pause, Play } from "lucide-react";
+import { Heart, Pause, Play } from "lucide-react";
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAudioDuration } from "../lib/hooks/useAudioDuration";
 
@@ -15,18 +18,27 @@ type Props = {
   track: ITrack;
 };
 
-export const TrackField = ({ track }: Props) => {
+export const TrackField = memo(({ track }: Props) => {
   const duration = useAudioDuration(`/songs/${track.file}`);
 
   const currentTrackId = useSelector((state: RootState) => state.player.currentTrack?.id);
   const currentTime = useSelector((state: RootState) => state.player.currentTime);
   const isPlaying = useSelector((state: RootState) => state.player.isPlaying);
+  const isFavorite = useSelector(selectIsFavorite(track.id));
 
   const dispatch = useDispatch();
 
   const handlePlayTrack = (track: ITrack) => {
     dispatch(setTrack({ track }));
     dispatch(play());
+  };
+
+  const handleFavorite = () => {
+    if (isFavorite) {
+      dispatch(deleteTrack({ id: track.id }));
+    } else {
+      dispatch(addTrack({ track }));
+    }
   };
 
   return (
@@ -39,7 +51,7 @@ export const TrackField = ({ track }: Props) => {
           <img className="w-full h-full object-contain rounded-xl select-none" src={`/images/songs/${track.img}`} alt={track.img} />
 
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 z-20">
-            {isPlaying ? <Pause className="w-full h-full" /> : <Play className="w-full h-full" />}
+            {isPlaying && currentTrackId === track.id ? <Pause className="w-full h-full" /> : <Play className="w-full h-full" />}
           </div>
 
           <div className="absolute w-full h-full object-contain rounded-xl bg-bg/50 z-10 opacity-0 group-hover:opacity-100 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2" />
@@ -49,7 +61,12 @@ export const TrackField = ({ track }: Props) => {
           <div>{authors.find((author) => author.id === track.author)?.name || "Unknown"}</div>
         </div>
       </div>
-      <TrackDuration duration={currentTrackId === track.id ? currentTime : duration!} />
+      <div className="flex items-center gap-5">
+        <button className="w-6 h-6" onClick={handleFavorite}>
+          <Heart className={`w-full h-full object-cover ${isFavorite && "text-red-800"}`} />
+        </button>
+        <TrackDuration duration={currentTrackId === track.id ? currentTime : duration!} />
+      </div>
     </div>
   );
-};
+});
