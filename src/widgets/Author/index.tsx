@@ -27,10 +27,6 @@ export const Author = ({ id }: Props) => {
     if (author) {
       dispatch(setTracksList(filtered));
     }
-
-    return () => {
-      dispatch(setTracksList([]));
-    };
   }, [dispatch, filtered, author]);
 
   if (!author) return <div>Автор не найден</div>;

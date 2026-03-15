@@ -1,15 +1,14 @@
 import type { RootState } from "@/app/store/store";
-import { selectIsFavorite } from "@/features/favorite/store/selectors";
-import { addTrack, deleteTrack } from "@/features/favorite/store/slice";
+import { useFavoriteTrack } from "@/features/favorite/lib/hooks/useFavoriteTrack";
 import { play, setTrack } from "@/features/player/store/slice";
 import { authors } from "@/shared/constants/author";
 import type { ITrack } from "@/shared/model/types";
-import { TrackDuration } from "@/shared/ui";
+import { ButtonFavorite, TrackDuration } from "@/shared/ui";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { Heart, Pause, Play } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 import { memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useAudioDuration } from "../lib/hooks/useAudioDuration";
 
 dayjs.extend(utc);
@@ -24,21 +23,11 @@ export const TrackField = memo(({ track }: Props) => {
   const currentTrackId = useSelector((state: RootState) => state.player.currentTrack?.id);
   const currentTime = useSelector((state: RootState) => state.player.currentTime);
   const isPlaying = useSelector((state: RootState) => state.player.isPlaying);
-  const isFavorite = useSelector(selectIsFavorite(track.id));
-
-  const dispatch = useDispatch();
+  const { isFavorite, handleFavorite, dispatch } = useFavoriteTrack(track);
 
   const handlePlayTrack = (track: ITrack) => {
     dispatch(setTrack({ track }));
     dispatch(play());
-  };
-
-  const handleFavorite = () => {
-    if (isFavorite) {
-      dispatch(deleteTrack({ id: track.id }));
-    } else {
-      dispatch(addTrack({ track }));
-    }
   };
 
   return (
@@ -62,9 +51,9 @@ export const TrackField = memo(({ track }: Props) => {
         </div>
       </div>
       <div className="flex items-center gap-5">
-        <button className="w-6 h-6" onClick={handleFavorite}>
-          <Heart className={`w-full h-full object-cover ${isFavorite && "text-red-800"}`} />
-        </button>
+        <div className={`opacity-0 group-hover:opacity-100 ${track.id === currentTrackId && "opacity-100"}`}>
+          <ButtonFavorite isFavorite={isFavorite} onClick={handleFavorite} />
+        </div>
         <TrackDuration duration={currentTrackId === track.id ? currentTime : duration!} />
       </div>
     </div>

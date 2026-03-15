@@ -5,6 +5,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface IPlayerSlice {
   isPlaying: boolean;
   isRepeat: boolean;
+  isRandom: boolean;
   currentTrack: ITrack | null;
   volume: number;
   currentTime: number;
@@ -15,6 +16,7 @@ interface IPlayerSlice {
 const initialState: IPlayerSlice = {
   isPlaying: false,
   isRepeat: false,
+  isRandom: false,
   currentTrack: null,
   volume: 50,
   currentTime: 0,
@@ -53,6 +55,10 @@ export const playerSlice = createSlice({
       state.isRepeat = !state.isRepeat;
     },
 
+    toggleRandomTrack(state) {
+      state.isRandom = !state.isRandom;
+    },
+
     seek(state, action: PayloadAction<{ time: number; duration?: number }>) {
       state.currentTime = action.payload.time;
       state.progress = (action.payload.time / (action.payload.duration || 1)) * 100;
@@ -66,6 +72,14 @@ export const playerSlice = createSlice({
 
     setTracksList(state, action: PayloadAction<ITrack[]>) {
       state.tracksList = action.payload;
+    },
+
+    randomTrack(state) {
+      if (!state.tracksList?.length) return;
+      const randomIndex = Math.floor(Math.random() * state.tracksList.length);
+      state.currentTrack = state.tracksList[randomIndex];
+      state.currentTime = 0;
+      state.isPlaying = true;
     },
 
     changeTrack(state, action: PayloadAction<{ type: TypeNextPrev }>) {
@@ -106,5 +120,18 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { setTrack, play, stop, seek, togglePlayPause, setVolume, changeTrack, close, toggleRepeatTrack, setTracksList } = playerSlice.actions;
+export const {
+  setTrack,
+  play,
+  stop,
+  seek,
+  togglePlayPause,
+  setVolume,
+  changeTrack,
+  close,
+  toggleRepeatTrack,
+  setTracksList,
+  randomTrack,
+  toggleRandomTrack,
+} = playerSlice.actions;
 export default playerSlice.reducer;
