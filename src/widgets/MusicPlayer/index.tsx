@@ -4,11 +4,11 @@ import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
 import { X } from "lucide-react";
 import { PropsWithChildren } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ControlCenter, ImageNameAuthor } from "./ui";
+import { ControlCenter, FavoriteButton, ImageNameAuthor } from "./ui";
 import { VolumeControl } from "./ui/VolumeControl";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
-  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack, onClose, onRepeat, toggleRepeat } = useAudioTrack();
+  const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack, onClose, toggleRepeat, toggleRandom, onTrackEnd } = useAudioTrack();
 
   const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
 
@@ -28,15 +28,24 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
             <ImageNameAuthor />
 
             {/* Центр управление трека: запуск/стоп и промотка */}
-            <ControlCenter duration={duration!} onSeek={onSeek} toggle={toggle} onChangeTrack={onChangeTrack} toggleRepeat={toggleRepeat} />
+            <ControlCenter
+              duration={duration!}
+              onSeek={onSeek}
+              toggle={toggle}
+              onChangeTrack={onChangeTrack}
+              toggleRepeat={toggleRepeat}
+              toggleRandom={toggleRandom}
+            />
 
             {/* Управление громкости */}
             <div className="flex relative right-5 gap-5 items-center">
+              <FavoriteButton />
               <VolumeControl onVolume={onVolume} />
               <X onClick={onClose} />
             </div>
 
             <audio
+              key={currentTrack.id}
               ref={audioRef}
               src={`/songs/${currentTrack.file}`}
               onTimeUpdate={(e) => {
@@ -44,7 +53,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
                 seedChange(currentTrack, duration!);
               }}
               autoPlay
-              onEnded={onRepeat}
+              onEnded={onTrackEnd}
             />
           </div>
         </div>

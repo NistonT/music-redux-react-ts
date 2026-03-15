@@ -1,7 +1,7 @@
 import { TextHeader } from "@/shared/ui";
 import { Favorites } from "@/widgets";
 
-export const FavoritesPage = () => {
+const FavoritesPage = () => {
   return (
     <div>
       <div className="flex w-full my-10 px-5 relative max-w-2xl">
@@ -11,3 +11,5 @@ export const FavoritesPage = () => {
     </div>
   );
 };
+
+export default FavoritesPage;

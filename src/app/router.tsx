@@ -1,9 +1,10 @@
-import { AuthorsPage, FavoritesPage, LibraryPage, MainPage, SearchPage } from "@/pages";
+import { AuthorsPage, LibraryPage, MainPage, SearchPage } from "@/pages";
 import { pageRouter } from "@/shared/constants/page-router";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
 
 const AuthorIdPage = lazy(() => import("@/pages/AuthorIdPage"));
+const FavoritesPage = lazy(() => import("@/pages/FavoritesPage"));
 
 export const Router = () => {
   return (
