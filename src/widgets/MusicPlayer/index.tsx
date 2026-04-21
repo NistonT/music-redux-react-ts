@@ -22,7 +22,7 @@ export const MusicPlayer = ({ children }: PropsWithChildren) => {
     <div>
       <div>{children}</div>
       {currentTrack && (
-        <div className="fixed bottom-0 left-0 w-full bg-bg border-white border-solid border-t-2">
+        <div className="fixed bottom-0 left-0 w-full bg-bg border-white border-solid border-t-2 z-50">
           <div className="text-white flex items-center justify-between w-full relative">
             {/* Название песни, автор и фотография */}
             <ImageNameAuthor />

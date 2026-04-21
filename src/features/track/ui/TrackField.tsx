@@ -26,8 +26,10 @@ export const TrackField = memo(({ track }: Props) => {
   const { isFavorite, handleFavorite, dispatch } = useFavoriteTrack(track);
 
   const handlePlayTrack = (track: ITrack) => {
-    dispatch(setTrack({ track }));
-    dispatch(play());
+    if (currentTrackId !== track.id) {
+      dispatch(setTrack({ track }));
+      dispatch(play());
+    }
   };
 
   return (
