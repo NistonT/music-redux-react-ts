@@ -1,4 +1,5 @@
 import type { RootState } from "@/app/store/store";
+import { closePanelMobile } from "@/features/leftBar/store/slice";
 import {
   changeTrack,
   close,
@@ -36,6 +37,7 @@ export const useAudioTrack = () => {
   const onClose = (): void => {
     if (!audioRef.current) return;
 
+    dispatch(closePanelMobile());
     dispatch(close());
   };
 
