@@ -18,15 +18,15 @@ export const SlideContent = ({ track }: Props) => {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <img src={`images/songs/${track.img}`} alt={track.img} className="w-full h-full object-cover object-center" />
-      <div className="absolute z-20 top-0 left-0 p-10 flex flex-col justify-between gap-10 w-full h-full">
+      <div className="absolute z-20 top-0 left-0 p-6 md:p-10 flex flex-col justify-between gap-6 md:gap-10 w-full h-full">
         <div>
           <TextHeader>LATEST RELEASE</TextHeader>
-          <div className="mt-2 bg-bg w-4/12 p-4 flex flex-col gap-2">
-            <h2 className="text-4xl">{track.name}</h2>
-            <p className="text-2xl">{authors.find((author) => author.id === track.author)?.name || "Unknown"}</p>
+          <div className="mt-2 bg-bg w-full md:w-4/12 p-3 md:p-4 flex flex-col gap-1 md:gap-2">
+            <h2 className="text-2xl md:text-4xl">{track.name}</h2>
+            <p className="text-lg md:text-2xl">{authors.find((author) => author.id === track.author)?.name || "Unknown"}</p>
           </div>
         </div>
-        <div>
+        <div className="pb-6 md:pb-0">
           <ButtonSwiper onClick={() => handlePlayTrack(track)}>Go to music</ButtonSwiper>
         </div>
       </div>

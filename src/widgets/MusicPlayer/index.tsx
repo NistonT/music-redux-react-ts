@@ -1,62 +1,42 @@
-import type { RootState } from "@/app/store/store";
-import { seek } from "@/features/player/store/slice";
 import { useAudioTrack } from "@/features/track/lib/hooks/useAudioTrack";
-import { X } from "lucide-react";
+import { useIsMobile } from "@/shared/lib/hooks/useIsMobile";
 import { PropsWithChildren } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ControlCenter, FavoriteButton, ImageNameAuthor } from "./ui";
-import { VolumeControl } from "./ui/VolumeControl";
+import { MusicPlayerDesktop, MusicPlayerMobile } from "./ui";
 
 export const MusicPlayer = ({ children }: PropsWithChildren) => {
   const { audioRef, duration, onSeek, toggle, onVolume, onChangeTrack, onClose, toggleRepeat, toggleRandom, onTrackEnd } = useAudioTrack();
 
-  const currentTrack = useSelector((state: RootState) => state.player.currentTrack);
-
-  const dispatch = useDispatch();
-
-  const seedChange = (time: number, duration?: number) => {
-    dispatch(seek({ time, duration }));
-  };
+  const isMobile = useIsMobile();
 
   return (
     <div>
       <div>{children}</div>
-      {currentTrack && (
-        <div className="fixed bottom-0 left-0 w-full bg-bg border-white border-solid border-t-2 z-50">
-          <div className="text-white flex items-center justify-between w-full relative">
-            {/* Название песни, автор и фотография */}
-            <ImageNameAuthor />
-
-            {/* Центр управление трека: запуск/стоп и промотка */}
-            <ControlCenter
-              duration={duration!}
-              onSeek={onSeek}
-              toggle={toggle}
-              onChangeTrack={onChangeTrack}
-              toggleRepeat={toggleRepeat}
-              toggleRandom={toggleRandom}
-            />
-
-            {/* Управление громкости */}
-            <div className="flex relative right-5 gap-5 items-center">
-              <FavoriteButton />
-              <VolumeControl onVolume={onVolume} />
-              <X onClick={onClose} />
-            </div>
-
-            <audio
-              key={currentTrack.id}
-              ref={audioRef}
-              src={`/songs/${currentTrack.file}`}
-              onTimeUpdate={(e) => {
-                const currentTrack = Math.floor(e.currentTarget.currentTime);
-                seedChange(currentTrack, duration!);
-              }}
-              autoPlay
-              onEnded={onTrackEnd}
-            />
-          </div>
-        </div>
+      {!isMobile ? (
+        <MusicPlayerDesktop
+          duration={duration!}
+          onSeek={onSeek}
+          onChangeTrack={onChangeTrack}
+          toggle={toggle}
+          toggleRepeat={toggleRepeat}
+          toggleRandom={toggleRandom}
+          onVolume={onVolume}
+          onClose={onClose}
+          audioRef={audioRef}
+          onTrackEnd={onTrackEnd}
+        />
+      ) : (
+        <MusicPlayerMobile
+          duration={duration!}
+          onSeek={onSeek}
+          onChangeTrack={onChangeTrack}
+          toggle={toggle}
+          toggleRepeat={toggleRepeat}
+          toggleRandom={toggleRandom}
+          onVolume={onVolume}
+          onClose={onClose}
+          audioRef={audioRef}
+          onTrackEnd={onTrackEnd}
+        />
       )}
     </div>
   );
