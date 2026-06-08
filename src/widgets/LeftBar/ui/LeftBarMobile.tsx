@@ -30,7 +30,7 @@ export const LeftBarMobile = () => {
       )}
 
       {!isLeftBarMobileSelector && (
-        <div className="fixed left-4 top-4 z-50">
+        <div className="fixed left-4 top-4 z-50 lg:hidden">
           <button type="button" className="text-white" onClick={toggleLeftBar}>
             <ArrowRight className="w-10 h-10" />
           </button>
