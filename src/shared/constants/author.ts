@@ -242,4 +242,35 @@ export const authors: IAuthor[] = [
       },
     ],
   },
+  {
+    id: 15,
+    name: "kai angel",
+    img: "kaiangel.jpg",
+    tracks: [
+      {
+        id: 17,
+        img: "amy.png",
+        name: "Amy",
+        author: 15,
+        file: "Kai Angel - amy.mp3",
+        genres: ["pop"],
+      },
+      {
+        id: 18,
+        img: "godmode.png",
+        name: "/godmode",
+        author: 15,
+        file: "godmode.mp3",
+        genres: ["pop"],
+      },
+      {
+        id: 19,
+        img: "madam.png",
+        name: "Madam",
+        author: 15,
+        file: "madam.mp3",
+        genres: ["pop"],
+      },
+    ],
+  },
 ];

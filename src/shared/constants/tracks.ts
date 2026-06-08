@@ -2,6 +2,30 @@ import type { ITrack } from "../model/types";
 
 export const tracks: ITrack[] = [
   {
+    id: 17,
+    img: "amy.png",
+    name: "Amy",
+    author: 15,
+    file: "Kai Angel - amy.mp3",
+    genres: ["pop"],
+  },
+  {
+    id: 18,
+    img: "godmode.png",
+    name: "/godmode",
+    author: 15,
+    file: "godmode.mp3",
+    genres: ["pop"],
+  },
+  {
+    id: 19,
+    img: "madam.png",
+    name: "Madam",
+    author: 15,
+    file: "madam.mp3",
+    genres: ["pop"],
+  },
+  {
     id: 0,
     img: "backtofriends.png",
     name: "Back to of friends",
