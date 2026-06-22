@@ -19,8 +19,6 @@ AuthorsList
 10. Добавить возможность, создавать свой плейлист
 11. Добавить React-window
 
-<!-- Скрыть/Показать LeftBar (Redux)-->
-
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
